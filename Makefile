@@ -53,9 +53,13 @@ $(B)/$(BASE_NAME)-app%.html: $(ADOCS)
 $(B)/$(BASE_NAME)-%.html: $(ADOCS)
 	$(ADCHUNKED) -a ch$* $(MAIN) -o $@
 
-$(ALLSVGS): $(B)/%.svg: %.svg
+$(B)/%.svg: %/%.svg
 	@mkdir -p $(dir $@)
 	inkscape --export-text-to-path -o $@ $<
+
+$(B)/images/app2/appb-01.svg: images/app2/appb-01.svg
+	@mkdir -p $(dir $@)
+	cp $< $@
 
 $(ALLPNGS): $(B)/%.png: %.png
 	mkdir -p $(dir $@)
